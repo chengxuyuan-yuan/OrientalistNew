@@ -1,0 +1,221 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" placeholder="账号" v-model="userName">
+        <input type="password" placeholder="密码" v-model="pass">
+        <img v-bind:src="url" alt=" " @click='change()'>
+        <input type="text " placeholder="验证码" v-model='identifyCode '>
+        <button @click='getList() '>点击</button>
+    </div>
+</body>
+<script src="./javascripts/ajax.js"></script>
+<script src="./javascripts/vue.js "></script>
+<script src="./javascripts/vue-resource.js ">
+</script>
+<script>
+    console.log(ajax)
+    const vm = new Vue({
+        el: '#app ',
+        data: {
+            randNumber: Math.random(0, 1),
+            urls: 'https://jy.xzsec.com/Login/YZM?randNum=',
+            userName: '540650225959',
+            pass: '326521',
+            identifyCode: '',
+            duration: '1800 ',
+            authCode: ' ',
+            type: 'Z ',
+            url: '',
+            eastmoney_txzq_zjzh: '',
+            Yybdm: '',
+            Uid: '',
+            Khmc: '',
+            mobileimei: '',
+            Uuid: ''
+        },
+        methods: {
+            change() {
+                const that = this
+                that.randNumber = Math.random()
+                this.url = this.urls + this.randNumber
+            },
+            getList() {
+                console.log('dianji ')
+                const that = this
+                this.$http.options.headers = {
+                    'Content-Type': 'application/json'
+                }
+                this.$http.post('http://localhost:3001/userLogin', {
+                    userId: that.userName,
+                    password: that.pass,
+                    randNumber: that.randNumber,
+                    identifyCode: that.identifyCode,
+                    duration: '1800',
+                    authCode: '',
+                    type: 'Z'
+                }, {
+                    emulateJSON: true
+                }).then(data => {
+                    console.log(data.data)
+                    that.randNumber = Math.random()
+                    this.url = this.urls + this.randNumber
+                    if (data.data.status == 1) {
+                        location.href = '/doOrder'
+                    }
+                })
+            }
+        },
+        created() {
+            this.url = this.urls + this.randNumber
+        },
+    })
+</script>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en" manifest="lixian.manifest">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>东方财富</title>
+    <link rel="stylesheet" href="./css/uikit.min.css">
+    <link rel="stylesheet" href="./css/uikit.gradient.min.css">
+    <link rel="stylesheet" href="./css/uikit.almost-flat.min.css">
+    <link rel="stylesheet" href="./css/docs.css">
+    <link rel="stylesheet" href="./css/currency.css">
+    <link rel="stylesheet" href="./css/components/notify.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="./js/jquery.js"></script>
+    <script src="./js/uikit.min.js"></script>
+
+</head>
+
+<body id="Tologin">
+
+    <div class="tm-middle tm-login" style="padding:0;">
+        <div class='login-wrap'>
+            <p class='login-title'>请登录</p>
+            <div class='uk-form tm-login-form'>
+                <!-- 输入用户名 -->
+                <div class="uk-form-row">
+                    <div class="uk-form-controls">
+                        <input type="text" id="userName" placeholder="请输入用户名" v-model='userName'>
+                    </div>
+                </div>
+                <!-- 请输入密码 -->
+                <div class="uk-form-row tm-login-margin">
+                    <div class="uk-form-controls">
+                        <input type="password" id="passWord" placeholder="请输入密码" v-model='pass'>
+                    </div>
+                </div>
+                <button class=" uk-button-large uk-width-1-1 uk-float-left-45" type="button" @click='change()'>
+                    <img v-bind:src="url" alt="">
+                </button>
+                <input class="uk-button uk-button-primary uk-button-large uk-width-1-1 uk-float-right-45" placeholder="请输入验证码" v-model="identifyCode"></input>
+            </div>
+            <div class='uk-forgetPass'>
+                <!-- <a href="/forgetPass">忘记密码</a>
+                 -->
+                <button class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="button" style="width:200px;margin-left:91px;margin-top:30px;" @click='getList()'>登录</button>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="./js/components/notify.js"></script>
+<!-- <script src="./js/vue.js"></script>
+<script src="./js/vue-resource.js"></script> -->
+<script src="./javascripts/ajax.js"></script>
+<script src="./javascripts/vue.js "></script>
+<script src="./javascripts/vue-resource.js ">
+</script>
+<script>
+    console.log(ajax)
+    const vm = new Vue({
+        el: '#Tologin ',
+        data: {
+            randNumber: Math.random(0, 1),
+            urls: 'https://jy.xzsec.com/Login/YZM?randNum=',
+            userName: '540650225959',
+            pass: '326521',
+            identifyCode: '',
+            duration: '1800 ',
+            authCode: ' ',
+            type: 'Z ',
+            url: '',
+            eastmoney_txzq_zjzh: '',
+            Yybdm: '',
+            Uid: '',
+            Khmc: '',
+            mobileimei: '',
+            Uuid: ''
+        },
+        methods: {
+            change() {
+                const that = this
+                that.randNumber = Math.random()
+                this.url = this.urls + this.randNumber
+            },
+            getHistory() {
+                var that = this
+                this.$http.post('http://localhost:3001/history', {}).then(data => {
+                    var resstr = data.data.body.slice(27)
+                    resstr = resstr.substring(0, resstr.length - 1)
+                    console.log('77777777777', JSON.parse(resstr))
+                    localStorage.resstr = resstr
+                })
+            },
+            getList() {
+                console.log('dianji ')
+                const that = this
+                this.$http.options.headers = {
+                    'Content-Type': 'application/json'
+                }
+                this.$http.post('http://localhost:3001/userLogin', {
+                    userId: that.userName,
+                    password: that.pass,
+                    randNumber: that.randNumber,
+                    identifyCode: that.identifyCode,
+                    duration: '1800',
+                    authCode: '',
+                    type: 'Z'
+                }, {
+                    emulateJSON: true
+                }).then(data => {
+                    console.log(data.data)
+                    that.randNumber = Math.random()
+                    this.url = this.urls + this.randNumber
+                    if (data.data.status == 1) {
+                        // location.href = '/control'
+                        window.localStorage.userName = data.data.data[0].khmc
+                        location.href = '/control'
+                    } else {
+                        UIkit.notify({
+                            message: data.data.data.Message,
+                            status: 'warning',
+                            timeout: 2000,
+                            pos: 'top-right'
+                        });
+                    }
+                })
+            }
+        },
+        created() {
+            this.url = this.urls + this.randNumber
+        },
+    })
+</script>
+
+</html>

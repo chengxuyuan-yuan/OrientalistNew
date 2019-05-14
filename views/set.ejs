@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" placeholder="设置最大金额" v-model='maxAmount'>
+        <input type="text">
+        <button @click='save() '>点击</button>
+    </div>
+</body>
+<script src="./javascripts/ajax.js"></script>
+<script src="./javascripts/vue.js "></script>
+<script src="./javascripts/vue-resource.js ">
+</script>
+<script>
+    console.log(ajax)
+    const vm = new Vue({
+        el: '#app ',
+        data: {
+            maxAmount: ''
+        },
+        methods: {
+            save() {
+                this.$http.post('http://localhost:3001/userLogin', {
+                    maxAmount: this.maxAmount
+                }, {
+                    emulateJSON: true
+                }).then(data => {
+                    console.log(data.data)
+                    that.randNumber = Math.random()
+                    this.url = this.urls + this.randNumber
+                    if (data.data.status == 1) {
+                        location.href = '/doOrder'
+                    }
+                    // this.listDate = data.data.body
+                })
+            }
+        },
+        created() {
+            this.url = this.urls + this.randNumber
+        },
+        // ready(){
+        //     this.$http
+        // }
+    })
+</script>
+
+</html>

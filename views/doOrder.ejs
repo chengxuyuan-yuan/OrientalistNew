@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model='stockCode' placeholder="证券代码"> -->
+        <!-- <input type="text" v-model='price' placeholder="买入价格"> -->
+        <!-- <input type="text" v-model='amount' placeholder="买入数量"> -->
+        <!-- <input type="text" v-model='tradeType' placeholder="B"> -->
+        <!-- <input type="text" v-model='zqmc' placeholder="证券名称"> -->
+        <input type="text" v-model="eastmoney_txzq_zjzh" placeholder="eastmoney_txzq_zjzh">
+        <input type="text" v-model='Yybdm' placeholder="Yybdm">
+        <input type="text" v-model="Uid" placeholder="Uid">
+        <input type="text" v-model="Khmc" placeholder="Khmc">
+        <input type="text" v-model="mobileimei" placeholder="mobileimei">
+        <input type="text" v-model="Uuid" placeholder="Uuid">
+        <input type="text" v-model='hiddenKey' placeholder="hiddenKey">
+        <button @click='doOrder() '>点击</button>
+    </div>
+</body>
+<script src="./javascripts/vue.js "></script>
+<script src="./javascripts/vue-resource.js ">
+</script>
+<script>
+    const vm = new Vue({
+        el: '#app ',
+        data: {
+            stockCode: '600089',
+            price: '7.26',
+            amount: '100',
+            tradeType: 'B',
+            zqmc: '特变电工',
+            eastmoney_txzq_zjzh: 'NTQwNjUwMjI1OTU5fA%3D%3D',
+            Yybdm: '5406',
+            Uid: 'K%2fiiWfZ4zyUIyvvoo%2b5hdA%3d%3d',
+            Khmc: '%e5%bc%a0%e4%b8%96%e6%a0%8b',
+            mobileimei: '6b3efade-f902-4034-ab93-d0bb676d3c57',
+            Uuid: '2bb7b352ce774a9781782dea62be8033',
+            hiddenKey: 'd2692679-f8fb-4678-bbc3-ff2d1d7ab4c9'
+                // eastmoney_txzq_zjzh: 'NTQwNjUwMjI1OTU5fA%3D%3D',
+                // Yybdm: '5406',
+                // Uid: 'OBN5nYE1d6dI%2fBAfUAKfiA%3d%3d',
+                // Khmc: '%e8%a2%81%e7%a6%8f%e9%9c%9e',
+                // mobileimei: '23a86d90-b60b-4d22-997f-9de4779ba427',
+                // Uuid: 'c2f6a93f0e8a42f9862bba8817794488'
+        },
+        methods: {
+            doOrder() {
+                console.log('dianji ')
+                const that = this
+                this.$http.post('http://localhost:3001/doOrder', {
+                    stockCode: that.stockCode,
+                    price: that.price,
+                    amount: that.amount,
+                    tradeType: that.tradeType,
+                    zqmc: that.zqmc,
+                    eastmoney_txzq_zjzh: that.eastmoney_txzq_zjzh,
+                    Yybdm: that.Yybdm,
+                    Uid: that.Uid,
+                    Khmc: that.Khmc,
+                    mobileimei: that.mobileimei,
+                    Uuid: that.Uuid,
+                    hiddenKey: that.hiddenKey
+                }, {
+                    emulateJSON: true
+                }).then(data => {
+                    console.log(data.data.status)
+                    if (data.data.status == 1) {
+                        location.href = '/control'
+                    }
+                })
+            }
+        }
+    })
+</script>
+
+</html>

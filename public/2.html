@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=" utf-8">
+    <meta name="author" content="http://www.softwhy.com/" />
+    <title>三级导航菜单代码-蚂蚁部落</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+        }
+        
+        #nav,
+        #nav ul {
+            list-style: none;
+            background: #F9F9F9;
+            font-weight: bold;
+            padding: 0px;
+            margin: 0px;
+            border: solid 1px #CCCCCC;
+            border-bottom: 0px;
+            width: 150px;
+            text-align: left;
+        }
+        
+        #nav ul ul {
+            border: solid 1px #CCCCCC;
+            border-bottom: 0px;
+        }
+        
+        #nav a {
+            display: block;
+            width: 150px;
+            w\idth: 140px;
+            color: #333333;
+            text-decoration: none;
+            text-align: center;
+            border-bottom: solid 1px #CCCCCC;
+            text-align: left;
+            padding-left: 10px;
+        }
+        
+        #nav a:hover {
+            color: #336666;
+        }
+        
+        #nav li {
+            line-height: 22px;
+            position: relative;
+        }
+        
+        #nav li ul {
+            position: absolute;
+            left: -999em;
+            width: 150px;
+            font-weight: normal;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        #nav li li {
+            width: 150px;
+        }
+        
+        #nav li ul a {
+            width: 150px;
+            w\idth: 126px;
+            padding: 0px 12px;
+            line-height: 22px;
+            text-align: left;
+        }
+        
+        #nav li ul ul {
+            margin: 0px 0 0 150px;
+        }
+        
+        #nav li:hover ul ul,
+        #nav li.sfhover ul ul {
+            left: -999em;
+        }
+        
+        #nav li:hover ul,
+        #nav li li:hover ul,
+        #nav li.sfhover ul,
+        #nav li li.sfhover ul {
+            left: auto;
+        }
+        
+        #nav li:hover ul,
+        #nav li.sfhover ul {
+            left: 150px;
+            top: 0px;
+        }
+        
+        #nav li:hover,
+        #nav li.sfhover {
+            background: #F5E3C0;
+        }
+        
+        * html #nav li {
+            float: left;
+            height: 1%;
+        }
+        
+        * html #nav li a {
+            height: 1%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="nav">
+        <li><a href="">Home</a></li>
+        <li><a href="#">About Me</a></li>
+        <li><a class="selected" href="#">Tutorials</a>
+            <ul>
+                <li><a href="#">Sub Menu 31</a></li>
+                <li><a class="selected" href="#">Sub Menu 32</a>
+                    <ul>
+                        <li><a href="#">Sub Menu 321</a></li>
+                        <li><a href="#">Sub Menu 322</a></li>
+                        <li><a href="#">Sub Menu 323</a></li>
+                        <li><a href="#">Sub Menu 324</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Sub Menu 33</a></li>
+                <li><a href="#">Sub Menu 34</a></li>
+            </ul>
+        </li>
+        <li><a class="selected" href="#">Gallery</a>
+            <ul>
+                <li><a href="#">Sub Menu 41</a></li>
+                <li><a class="selected" href="#">Sub Menu 42</a>
+                    <ul>
+                        <li><a href="#">Sub Menu 421</a></li>
+                        <li><a href="#">Sub Menu 422</a></li>
+                        <li><a href="#">Sub Menu 423</a></li>
+                        <li><a href="#">Sub Menu 424</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Sub Menu 43</a></li>
+                <li><a href="#">Sub Menu 44</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Contact Me</a></li>
+    </ul>
+</body>
+
+</html>

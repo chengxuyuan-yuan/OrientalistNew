@@ -1,0 +1,137 @@
+.tm-login {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    /* background: url(../img/login-bg.png) no-repeat center;
+    background-size: 100% 100%; */
+    /* animation: 1.4s moves infinite; */
+    transition: all 0.5s;
+    background: url(../images/login-bg.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+@keyframes moves {
+    0% {
+        background: url(../images/login-bg.png) no-repeat;
+        background-size: 100% 100%;
+    }
+    50% {
+        background: url(../images/login-bg.png) no-repeat;
+        background-size: 200% 200%;
+    }
+    100% {
+        background: url(../images/login-bg.png) no-repeat;
+        background-size: 100% 100%;
+    }
+    100% {
+        /* background: url(../img/login-bg.png) repeat-x center; */
+        /* background-size: 50% 100%; */
+    }
+    /* 10% {
+        background: url(../img/login-bg.png) no-repeat center;
+        background-size: 100% 100%;
+    }
+    20% {
+        background: url(../img/login-bg.png) no-repeat center;
+        background-size: 100% 100%;
+    }
+    30% {
+        background: url(../img/login-bg.png) no-repeat center;
+        background-size: 150% 100%;
+    }
+    40% {
+        background: url(../img/login-bg.png) no-repeat center;
+        background-size: 100% 150%;
+    }
+    50% {
+        background: url(../img/login-bg.png) no-repeat center;
+        background-size: 200% 200%;
+    }
+    60% {
+        background: url(../img/login-bg.png) no-repeat center;
+        background-size: 100% 100%;
+    }
+    70% {
+        background: url(../img/login-bg.png) no-repeat center;
+        background-size: 300% 100%;
+    }
+    80% {
+        background: url(../img/login-bg.png) no-repeat center;
+        background-size: 100% 300%;
+    }
+    90% {
+        background: url(../img/login-bg.png) no-repeat center;
+        background-size: 100% 100%;
+    }
+    100% {
+        background: url(../img/login-bg.png) no-repeat center;
+        background-size: 100% 100%;
+    } */
+}
+
+.login-wrap {
+    width: 372px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    background: url(../images/loginWrap.png) no-repeat center;
+    background-size: 100% 100%;
+}
+
+.login-title {
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    padding-top: 76px;
+    text-align: center;
+}
+
+.tm-login-form {
+    padding: 0 30px;
+}
+
+.tm-login-form .uk-form-row .uk-form-controls input {
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.tm-login-margin {
+    margin-bottom: 20px;
+}
+
+.uk-float-left-45,
+.uk-float-right-45 {
+    width: 45%;
+}
+
+.uk-float-left-45 {
+    float: left;
+    background: #fff;
+    color: #00a8e6;
+}
+
+.uk-float-right-45 {
+    float: right;
+}
+
+.uk-forgetPass {
+    overflow: hidden;
+    clear: both;
+    padding-top: 7px;
+}
+
+.uk-forgetPass a {
+    color: #00a8e6;
+    float: right;
+    margin-right: 29px;
+}

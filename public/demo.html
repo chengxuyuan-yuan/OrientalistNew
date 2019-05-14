@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let arr1 = [{
+        id: '1',
+        name: 'json'
+    }, {
+        id: '2',
+        name: 'book'
+    }]
+    let arr2 = [{
+        id: '1',
+        name: 'json',
+        age: '15'
+    }, {
+        id: '2',
+        name: 'book',
+        age: '16'
+    }, {
+        id: '3',
+        name: 'ani',
+        age: '17'
+    }]
+
+    //ES6的方法
+
+    let add = arr2.filter(item => !arr1.some(ele => ele.id === item.id));
+
+    console.log(add);
+</script>
+
+</html>

@@ -1,0 +1,84 @@
+html,
+body {
+    height: 100%;
+}
+
+.tm-navbar {
+    z-index: 10000;
+}
+
+
+/* 除header外的内容全包裹在这个盒子里 */
+
+.tm-huiWrap {
+    /* height: 100%; */
+    /* background: red; */
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.tm-huiWrap .tm-huiWrap-cont {
+    height: 100%;
+}
+
+.tm-huiWrap .aside {
+    height: 100%;
+    float: left;
+    width: 240px;
+    /* background: red; */
+}
+
+.tm-huiWrap .aside #asider {
+    /* position: absolute; */
+    /* top: 70px; */
+    /* bottom: 0; */
+    height: 100%;
+}
+
+.tm-huiWrap .aside #asider .uk-offcanvas-bar {
+    height: 100%;
+}
+
+.tm-huiWrap .aside #asider .tm-huixingu-aside-con {
+    position: relative;
+    transform: translate(0, 0)
+}
+
+.tm-huiWrap .uk-grid {
+    height: 100%;
+    margin-left: 240px;
+    /* background: blue; */
+}
+
+.tm-container {
+    width: 100%;
+    height: 100%;
+    padding-left: 0;
+    overflow-y: auto;
+}
+
+.tm-headers a:hover {
+    background-color: #2BA3D4;
+    color: #fff;
+}
+
+.tm-navbar .uk-navbar-nav>li:hover>a,
+.tm-navbar .uk-navbar-nav>li>a:focus,
+.tm-navbar .uk-navbar-nav>li.uk-open>a {
+    background-color: #2BA3D4;
+    color: #fff;
+}
+
+.tm-forgetPassMargin {
+    margin-bottom: 50px;
+}
+
+
+/* background-color: #2BA3D4; */
+
+
+/* color: #FFF; */
