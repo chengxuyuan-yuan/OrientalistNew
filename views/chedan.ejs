@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/uikit.min.css">
+    <link rel="stylesheet" href="./css/uikit.gradient.min.css">
+    <link rel="stylesheet" href="./css/uikit.almost-flat.min.css">
+    <link rel="stylesheet" href="./css/docs.css">
+    <link rel="stylesheet" href="./css/currency.css">
+    <link rel="stylesheet" href="./css/components/notify.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="./js/jquery.js"></script>
+    <script src="./js/uikit.min.js"></script>
+    <style>
+        .clearFloat {
+            overflow: hidden;
+        }
+        
+        .floatRight {
+            float: right;
+        }
+        
+        .tm-navbar {
+            z-index: 1000!important;
+        }
+    </style>
+</head>
+
+<body class="tm-background" id="app">
+    <nav class="tm-navbar uk-navbar uk-navbar-attached">
+        <div class="uk-container uk-container-center">
+            <ul class="uk-navbar-nav uk-hidden-small" style="float:right;color: white">
+                <li><button class="uk-button uk-button-large ">{{userName}}</button></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tm-middle">
+        <div class="uk-container uk-container-center">
+
+            <div class="uk-grid" data-uk-grid-margin="">
+                <div class="tm-sidebar uk-width-medium-1-4 uk-hidden-small uk-row-first">
+
+
+                    <!-- 333333333 -->
+                    <p style="color:red;font-size: 1rem;">注：手数设置指的是股票交易的手数，金额设置指的是一只股票最多的买入数</p>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#subnav-pill-content-1'}">
+                        <li class="" aria-expanded="false"><a href="#">手数设置</a></li>
+                        <li aria-expanded="true" class="uk-active"><a href="#">金额设置</a></li>
+                    </ul>
+                    <ul id="subnav-pill-content-1" class="uk-switcher">
+                        <li class="" aria-hidden="true">
+                            <ul class="tm-nav uk-nav center" data-uk-nav="">
+
+                                <li class="uk-nav-header">选择买入手数</li>
+                                <li style="margin-bottom:10px;">
+                                    <form class="uk-form">
+                                        <fieldset data-uk-margin>
+                                            <input type="text" placeholder="设置总金额" v-model="AmountAll" readonly>
+                                        </fieldset>
+
+                                    </form>
+                                </li>
+                                <li style="margin-bottom:10px">
+                                    <form class="uk-form">
+                                        <fieldset data-uk-margin>
+                                            <input type="text" placeholder="设置每只股票买入手数" v-model="gupiaoItem" readonly>
+                                        </fieldset>
+                                    </form>
+                                </li>
+                                <li>
+                                    <button class="uk-button uk-button-danger" @click='setAmount()'>设   置</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li aria-hidden="false" class="uk-active">
+                            <ul class="tm-nav uk-nav center" data-uk-nav="">
+
+                                <li class="uk-nav-header">选择每只股票最大金额</li>
+                                <li style="margin-bottom:10px;">
+                                    <form class="uk-form">
+                                        <fieldset data-uk-margin>
+                                            <input type="text" placeholder="设置总金额" v-model="AmountAll" readonly>
+                                        </fieldset>
+
+                                    </form>
+                                </li>
+                                <li style="margin-bottom:10px">
+                                    <form class="uk-form">
+                                        <fieldset data-uk-margin>
+                                            <input type="text" placeholder="设置每只股票最大买入金额" v-model="gupiaoItem1" readonly>
+                                        </fieldset>
+                                    </form>
+                                </li>
+                                <li>
+                                    <button class="uk-button uk-button-danger" @click='setAmount1()'>设   置</button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+
+
+
+                </div>
+                <div class="tm-main uk-width-medium-3-4">
+
+                    <article class="uk-article">
+                        <p>
+                            <button class="uk-button uk-button-large uk-button-primary" @click='start()'>开始</button>
+                            <button class="uk-button uk-button-large" @click='stop()'>暂停</button>
+                        </p>
+                        <!-- 列表 -->
+                        <ul class="uk-list uk-list-line">
+                            <li v-for='item in listDate'>
+                                <div v-if='item.success' class="clearFloat">
+                                    <span>{{$index}}</span>
+                                    <span>{{item.title}}</span>
+                                    <span class="color:red">{{item.type}}</span>
+                                    <span>{{item.Number}}</span>
+                                    <span>{{item.Message}}</span>
+                                    <!-- <button>下单成功</button> -->
+                                    <div class="uk-dropdown uk-dropdown-bottom" style="top: 30px; left: 0px;">
+                                        <ul class="uk-nav uk-nav-dropdown">
+                                            <li><span>{{item.Message}}</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div v-if='!item.success' class="clearFloat">
+                                    <span>{{$index+1}}</span>
+                                    <span>{{item.title}}</span>
+                                    <span class="color:red">{{item.type}}</span>
+                                    <span>{{item.Number}}</span>
+                                    <span>{{item.Message}}</span>
+                                    <!-- <button>下单失败</button> -->
+                                    <div class="uk-button-dropdown floatRight" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
+                                        <button class="uk-button uk-button-danger">下单失败 <i class="uk-icon-caret-down"></i></button>
+                                        <div class="uk-dropdown uk-dropdown-bottom" style="top: 30px; left: 0px;">
+                                            <ul class="uk-nav uk-nav-dropdown">
+                                                <li><span>{{item.Message}}</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </article>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- <div id="app">
+        <h1>页面接口调试</h1>
+        <div class="btnWrap">
+            <button @click='start()'>
+                开始
+            </button>
+            <button @click='stop()'>
+                停止
+            </button>
+        </div>
+        <div>
+            <ul>
+                <li v-for='item in listDate' @click='getDetail(item)'>
+                    <div v-if='item.success'>
+                        <span>{{$index}}</span>
+                        <a href='#'>{{item.Message}}</a>
+                        <button>下单成功</button>
+                    </div>
+                    <div v-if='!item.success'>
+                        <span>{{$index}}</span>
+                        <a href='#'>{{item.Message}}</a>
+                        <button>下单失败</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div> -->
+</body>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script src="./js/components/notify.js"></script>
+<!-- <script src="./js/vue.js"></script>
+<script src="./js/vue-resource.js"></script> -->
+<!-- <script src="./javascripts/ajax.js"></script> -->
+<script src="./javascripts/vue.js "></script>
+<script src="./javascripts/vue-resource.js ">
+</script>
+<script>
+    var socket = io();
+    var localStorage = window.localStorage
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            listDate: [],
+            userName: window.localStorage.userName,
+            AmountAll: '',
+            // 股票买入手数
+            gupiaoItem: '',
+            // 股票最大买入金额
+            gupiaoItem1: ''
+        },
+        methods: {
+            setAmount() {
+                var that = this
+                console.log('1232131231', that.AmountAll, that.gupiaoItem)
+                this.$http.post('http://localhost:3001/amount', {
+                    AmountAll: that.AmountAll,
+                    gupiaoItem: that.gupiaoItem,
+                    type: 1
+                }).then(data => {
+                    if (data.data.status == 1) {
+                        that.gupiaoItem1 = 0
+                    }
+                    console.log(data.data)
+                    UIkit.notify({
+                        message: data.data.data,
+                        status: 'warning',
+                        timeout: 2000,
+                        pos: 'top-right'
+                    });
+                })
+            },
+            setAmount1() {
+                var that = this
+                console.log('1232131231', that.AmountAll, that.gupiaoItem)
+                this.$http.post('http://localhost:3001/amount', {
+                    AmountAll: that.AmountAll,
+                    gupiaoItem1: that.gupiaoItem1,
+                    type: 2
+                }).then(data => {
+                    console.log(data.data)
+                    if (data.data.status == 1) {
+                        that.gupiaoItem = 0
+                    }
+                    UIkit.notify({
+                        message: data.data.data,
+                        status: 'warning',
+                        timeout: 2000,
+                        pos: 'top-right'
+                    });
+                })
+            },
+            getAmount() {
+                var that = this
+                this.$http.post('http://localhost:3001/seachAmount', {}).then(data => {
+                    console.log('data', data.data)
+                    that.AmountAll = data.data.AmountAll
+                    that.gupiaoItem = data.data.gupiaoItem
+                    that.gupiaoItem1 = data.data.gupiaoItem1
+                })
+            },
+            start() {
+                this.$http.post('http://localhost:3001/start', {
+
+                }).then(data => {
+                    // console.log(data.data) 
+                    if (data.data.status == 1) {
+                        this.listDate = data.data.data
+                    } else {
+                        UIkit.notify({
+                            message: data.data.data,
+                            status: 'warning',
+                            timeout: 2000,
+                            pos: 'top-right'
+                        });
+                    }
+                })
+            },
+            stop() {
+                socket.emit("getls", {
+                    "wyz": 'wabgbs',
+                });
+
+                // this.$http.post('http://localhost:3001/stop', {
+
+                // }).then(data => {
+                //     console.log(data.data.body)
+                //     this.AmountAll = data.data.body.AmountAll
+                //     this.gupiaoItem = data.data.body.gupiaoItem
+                // })
+            },
+            getHistory() {
+                this.$http.post('http://localhost:3001/history', {
+
+                }).then(data => {
+                    // console.log(data.data) 
+                    if (data.data.status == 1) {
+                        console.log(111)
+                    } else {
+                        UIkit.notify({
+                            message: data.data.data,
+                            status: 'warning',
+                            timeout: 2000,
+                            pos: 'top-right'
+                        });
+                    }
+                })
+            },
+            yesterdayOrderList() {
+                this.$http.post('http://localhost:3001/getYesterdayBuyList', {
+
+                }).then(data => {
+                    // console.log(data.data) 
+                    if (data.data.status == 1) {
+                        console.log(111)
+                    } else {
+                        UIkit.notify({
+                            message: data.data.data,
+                            status: 'warning',
+                            timeout: 2000,
+                            pos: 'top-right'
+                        });
+                    }
+                })
+            }
+        },
+        created() {
+            if (!window.localStorage.userName) {
+                window.location.href = '/login'
+            }
+            this.getAmount()
+            this.yesterdayOrderList()
+            this.getHistory()
+        }
+    })
+    socket.on("getls", function(msg) {
+        console.log(msg.datas.data)
+        vm.listDate = msg.datas.data
+    });
+</script>
+
+</html>
