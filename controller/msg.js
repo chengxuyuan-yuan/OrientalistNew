@@ -30,7 +30,10 @@ const gupiaoMsg = {
 const hiddenKey = ''
 const cookieStr = ''
 var AmountAll = 0
+    // 每只股票买入几手
 var gupiaoItem = 0
+    // 每只股票最大买多少钱
+var gupiaoItem1 = 0
 const result = []
     // 数组去重
 var filterArr = []
@@ -39,11 +42,13 @@ var huoqushijian = new Date()
 var getTimes = huoqushijian.getFullYear() + huoqushijian.getMonth() + huoqushijian.getDate()
     //记录filterArr最后一次保存的时间
 var sendTimes = ''
-if (getTimes != sendTimes) {
-    filterArr = []
-}
-// 判断几个是涨停的
+    // if (getTimes != sendTimes) {
+    //     filterArr = []
+    // }
+    // 判断几个是涨停的
 const nums = 0
+    // 下过的单
+var ordered = []
 module.exports = {
     msg,
     cookieMsg,
@@ -52,7 +57,9 @@ module.exports = {
     result,
     hiddenKey,
     gupiaoItem,
+    gupiaoItem1,
     AmountAll,
     filterArr,
-    sendTimes
+    sendTimes,
+    ordered
 }

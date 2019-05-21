@@ -8,6 +8,8 @@ var control = require('./control')
 var amount = require('./amount')
 var history = require('./getHistroy')
 var getLog = require('./getLog')
+var yesterdayOrderList = require('./yesterdayOrderList')
+var holdPositions = require('./holdPositions')
 module.exports = {
     ...list,
     ...detail,
@@ -18,5 +20,7 @@ module.exports = {
     ...control,
     ...amount,
     ...history,
-    ...getLog
+    ...getLog,
+    ...yesterdayOrderList,
+    ...holdPositions
 }

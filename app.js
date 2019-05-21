@@ -22,6 +22,7 @@ var controlRouter = require('./routes/control')
 var canshuRouter = require('./routes/canshu')
 var setRouter = require('./routes/set')
 var logRouter = require('./routes/log')
+var chedanRouter = require('./routes/chedan')
 var controller = require('./controller')
 var app = express();
 
@@ -56,6 +57,7 @@ app.use('/control', controlRouter);
 app.use('/canshu', canshuRouter);
 app.use('/set', setRouter);
 app.use('/log', logRouter);
+app.use('/chedan', chedanRouter);
 app.post('/list', controller.list)
 app.post('/detail', controller.detailed)
 app.post('/doOrder', controller.doOrder)
@@ -67,6 +69,8 @@ app.post('/seachAmount', controller.seachAmount)
 app.post('/history', controller.history)
 app.post('/getLog', controller.getLog)
 app.post('/getLogList', controller.getLogList)
+app.post('/getYesterdayBuyList', controller.getYesterdayBuyList)
+app.post('/holdPositions', controller.holdPositions)
     // app.post('./doOrder', controller.doOrder)
     // app.post('./doOrder', controller.doOrder)
 

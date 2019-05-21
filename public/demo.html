@@ -12,32 +12,38 @@
 
 </body>
 <script>
-    let arr1 = [{
-        id: '1',
-        name: 'json'
-    }, {
-        id: '2',
-        name: 'book'
-    }]
-    let arr2 = [{
-        id: '1',
-        name: 'json',
-        age: '15'
-    }, {
-        id: '2',
-        name: 'book',
-        age: '16'
-    }, {
-        id: '3',
-        name: 'ani',
-        age: '17'
-    }]
+    function chec() {
 
-    //ES6的方法
+    }
+    console.log([1], [2], [3].find(function(value, index, arr) {
+            return value[0] == 3
+        }))
+        // let arr1 = [{
+        //     id: '1',
+        //     name: 'json'
+        // }, {
+        //     id: '2',
+        //     name: 'book'
+        // }]
+        // let arr2 = [{
+        //     id: '1',
+        //     name: 'json',
+        //     age: '15'
+        // }, {
+        //     id: '2',
+        //     name: 'book',
+        //     age: '16'
+        // }, {
+        //     id: '3',
+        //     name: 'ani',
+        //     age: '17'
+        // }]
 
-    let add = arr2.filter(item => !arr1.some(ele => ele.id === item.id));
+    // //ES6的方法
 
-    console.log(add);
+    // let add = arr2.filter(item => !arr1.some(ele => ele.id === item.id));
+
+    // console.log(add);
 </script>
 
 </html>

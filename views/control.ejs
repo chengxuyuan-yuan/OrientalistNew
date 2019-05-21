@@ -44,28 +44,67 @@
             <div class="uk-grid" data-uk-grid-margin="">
                 <div class="tm-sidebar uk-width-medium-1-4 uk-hidden-small uk-row-first">
 
-                    <ul class="tm-nav uk-nav center" data-uk-nav="">
 
-                        <li class="uk-nav-header">设置区域</li>
-                        <li style="margin-bottom:10px;">
-                            <form class="uk-form">
-                                <fieldset data-uk-margin>
-                                    <input type="text" placeholder="设置总金额" v-model="AmountAll">
-                                </fieldset>
+                    <!-- 333333333 -->
+                    <p style="color:red;font-size: 1rem;">注：手数设置指的是股票交易的手数，金额设置指的是一只股票最多的买入数</p>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#subnav-pill-content-1'}">
+                        <li class="" aria-expanded="false"><a href="#">手数设置</a></li>
+                        <li aria-expanded="true" class="uk-active"><a href="#">金额设置</a></li>
+                    </ul>
+                    <ul id="subnav-pill-content-1" class="uk-switcher">
+                        <li class="" aria-hidden="true">
+                            <ul class="tm-nav uk-nav center" data-uk-nav="">
 
-                            </form>
+                                <li class="uk-nav-header">选择买入手数</li>
+                                <li style="margin-bottom:10px;">
+                                    <form class="uk-form">
+                                        <fieldset data-uk-margin>
+                                            <input type="text" placeholder="设置总金额" v-model="AmountAll">
+                                        </fieldset>
+
+                                    </form>
+                                </li>
+                                <li style="margin-bottom:10px">
+                                    <form class="uk-form">
+                                        <fieldset data-uk-margin>
+                                            <input type="text" placeholder="设置每只股票买入手数" v-model="gupiaoItem">
+                                        </fieldset>
+                                    </form>
+                                </li>
+                                <li>
+                                    <button class="uk-button uk-button-danger" @click='setAmount()'>设   置</button>
+                                </li>
+                            </ul>
                         </li>
-                        <li style="margin-bottom:10px">
-                            <form class="uk-form">
-                                <fieldset data-uk-margin>
-                                    <input type="text" placeholder="设置每只股票买入手数" v-model="gupiaoItem">
-                                </fieldset>
-                            </form>
-                        </li>
-                        <li>
-                            <button class="uk-button uk-button-danger" @click='setAmount()'>设   置</button>
+                        <li aria-hidden="false" class="uk-active">
+                            <ul class="tm-nav uk-nav center" data-uk-nav="">
+
+                                <li class="uk-nav-header">选择每只股票最大金额</li>
+                                <li style="margin-bottom:10px;">
+                                    <form class="uk-form">
+                                        <fieldset data-uk-margin>
+                                            <input type="text" placeholder="设置总金额" v-model="AmountAll">
+                                        </fieldset>
+
+                                    </form>
+                                </li>
+                                <li style="margin-bottom:10px">
+                                    <form class="uk-form">
+                                        <fieldset data-uk-margin>
+                                            <input type="text" placeholder="设置每只股票最大买入金额" v-model="gupiaoItem1">
+                                        </fieldset>
+                                    </form>
+                                </li>
+                                <li>
+                                    <button class="uk-button uk-button-danger" @click='setAmount1()'>设   置</button>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
+
+
+
+
 
                 </div>
                 <div class="tm-main uk-width-medium-3-4">
@@ -84,6 +123,7 @@
                                     <span class="color:red">{{item.type}}</span>
                                     <span>{{item.Number}}</span>
                                     <span>{{item.Message}}</span>
+                                    <span>{{item.times}}</span>
                                     <!-- <button>下单成功</button> -->
                                     <div class="uk-dropdown uk-dropdown-bottom" style="top: 30px; left: 0px;">
                                         <ul class="uk-nav uk-nav-dropdown">
@@ -97,6 +137,7 @@
                                     <span class="color:red">{{item.type}}</span>
                                     <span>{{item.Number}}</span>
                                     <span>{{item.Message}}</span>
+                                    <span>{{item.times}}</span>
                                     <!-- <button>下单失败</button> -->
                                     <div class="uk-button-dropdown floatRight" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
                                         <button class="uk-button uk-button-danger">下单失败 <i class="uk-icon-caret-down"></i></button>
@@ -107,6 +148,12 @@
                                         </div>
                                     </div>
                                 </div>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>已下过的单</li>
+                            <li v-for='item in orderDate'>
+                                {{item}}
                             </li>
                         </ul>
                     </article>
@@ -167,7 +214,11 @@
             listDate: [],
             userName: window.localStorage.userName,
             AmountAll: '',
-            gupiaoItem: ''
+            // 股票买入手数
+            gupiaoItem: '',
+            // 股票最大买入金额
+            gupiaoItem1: '',
+            orderDate: ''
         },
         methods: {
             setAmount() {
@@ -175,9 +226,33 @@
                 console.log('1232131231', that.AmountAll, that.gupiaoItem)
                 this.$http.post('http://localhost:3001/amount', {
                     AmountAll: that.AmountAll,
-                    gupiaoItem: that.gupiaoItem
+                    gupiaoItem: that.gupiaoItem,
+                    type: 1
+                }).then(data => {
+                    if (data.data.status == 1) {
+                        that.gupiaoItem1 = 0
+                    }
+                    console.log(data.data)
+                    UIkit.notify({
+                        message: data.data.data,
+                        status: 'warning',
+                        timeout: 2000,
+                        pos: 'top-right'
+                    });
+                })
+            },
+            setAmount1() {
+                var that = this
+                console.log('1232131231', that.AmountAll, that.gupiaoItem)
+                this.$http.post('http://localhost:3001/amount', {
+                    AmountAll: that.AmountAll,
+                    gupiaoItem1: that.gupiaoItem1,
+                    type: 2
                 }).then(data => {
                     console.log(data.data)
+                    if (data.data.status == 1) {
+                        that.gupiaoItem = 0
+                    }
                     UIkit.notify({
                         message: data.data.data,
                         status: 'warning',
@@ -192,6 +267,7 @@
                     console.log('data', data.data)
                     that.AmountAll = data.data.AmountAll
                     that.gupiaoItem = data.data.gupiaoItem
+                    that.gupiaoItem1 = data.data.gupiaoItem1
                 })
             },
             start() {
@@ -223,19 +299,81 @@
                 //     this.AmountAll = data.data.body.AmountAll
                 //     this.gupiaoItem = data.data.body.gupiaoItem
                 // })
+            },
+            getHistory() {
+                this.$http.post('http://localhost:3001/history', {
+
+                }).then(data => {
+                    // console.log(data.data) 
+                    if (data.data.status == 1) {
+                        console.log(111)
+                    } else {
+                        UIkit.notify({
+                            message: data.data.data,
+                            status: 'warning',
+                            timeout: 2000,
+                            pos: 'top-right'
+                        });
+                    }
+                })
+            },
+            // 昨天下过的单
+            yesterdayOrderList() {
+                this.$http.post('http://localhost:3001/getYesterdayBuyList', {
+
+                }).then(data => {
+                    // console.log(data.data) 
+                    if (data.data.status == 1) {
+                        console.log(111)
+                    } else {
+                        UIkit.notify({
+                            message: data.data.data,
+                            status: 'warning',
+                            timeout: 2000,
+                            pos: 'top-right'
+                        });
+                    }
+                })
+            },
+            // 我的持仓
+            holdPositions() {
+                this.$http.post('http://localhost:3001/holdPositions', {
+
+                }).then(data => {
+                    // console.log(data.data) 
+                    if (data.data.status == 1) {
+                        console.log(111)
+                    } else {
+                        UIkit.notify({
+                            message: data.data.data,
+                            status: 'warning',
+                            timeout: 2000,
+                            pos: 'top-right'
+                        });
+                    }
+                })
             }
         },
         created() {
             if (!window.localStorage.userName) {
                 window.location.href = '/login'
             }
-            this.getAmount()
-                // this.getHistory()
+            // this.getAmount()
+            // this.yesterdayOrderList()
+            this.getHistory()
+                // this.holdPositions()
         }
     })
     socket.on("getls", function(msg) {
         console.log(msg.datas.data)
-        vm.listDate = msg.datas.data
+            // vm.listDate = msg.datas.data
+        for (var i = 0; i < msg.datas.data; i++) {
+            vm.listDate.push(msg.datas.data[i])
+        }
+    });
+    socket.on("orders", function(msg) {
+        console.log(msg.datas.data)
+        vm.orderDate = msg.datas.data
     });
 </script>
 
