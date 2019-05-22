@@ -47,7 +47,7 @@
         },
         methods: {
             start() {
-                this.$http.post('http://localhost:3001/start', {
+                this.$http.post(`http://${window.location.host}/start`, {
 
                 }).then(data => {
                     console.log(data.data.body)
@@ -55,7 +55,7 @@
                 })
             },
             stop() {
-                this.$http.post('http://localhost:3001/stop', {
+                this.$http.post(`http://${window.location.host}/stop`, {
 
                 }).then(data => {
                     console.log(data.data.body)
@@ -64,7 +64,7 @@
             },
             getList() {
                 console.log('dianji')
-                this.$http.post('http://localhost:3001/list', {
+                this.$http.post(`http://${window.location.host}/list`, {
 
                 }).then(data => {
                     console.log(data.data.body)
@@ -72,14 +72,14 @@
                 })
             },
             getDetail(item) {
-                this.$http.post('http://localhost:3001/detail', {
+                this.$http.post('http://${window.location.host}/detail', {
                     id: item.split(',')[4].toString()
                 }).then(data => {
                     console.log(data)
                 })
             },
             doOrder() {
-                this.$http.post('http://localhost:3001/doOrder', {
+                this.$http.post('http://${window.location.host}/doOrder', {
                     stockCode: 603345,
                     price: 45.47,
                     amount: 200,
@@ -91,7 +91,7 @@
                 console.log('dianji ')
                 const that = this
 
-                this.$http.post('http://localhost:3001/userLogin', {
+                this.$http.post('http://${window.location.host}/userLogin', {
                     userId: that.userName,
                     password: that.pass,
                     randNumber: that.randNumber,
@@ -168,7 +168,7 @@
                 this.$http.options.headers = {
                     'Content-Type': 'application/json'
                 }
-                this.$http.post('http://localhost:3001/userLogin', {
+                this.$http.post('http://${window.location.host}/userLogin', {
                     userId: that.userName,
                     password: that.pass,
                     randNumber: that.randNumber,
@@ -248,6 +248,7 @@
     </div>
 
 </body>
+<script src="./javascripts/vconsole.min.js"></script>
 <script src="./js/components/notify.js"></script>
 <!-- <script src="./js/vue.js"></script>
 <script src="./js/vue-resource.js"></script> -->
@@ -257,6 +258,8 @@
 </script>
 <script>
     console.log(ajax)
+    var vConsole = new VConsole();
+    console.log('Hello world');
     const vm = new Vue({
         el: '#Tologin ',
         data: {
@@ -288,7 +291,7 @@
                 this.$http.options.headers = {
                     'Content-Type': 'application/json'
                 }
-                this.$http.post('http://localhost:3001/userLogin', {
+                this.$http.post(`http://${window.location.host}/userLogin`, {
                     userId: that.userName,
                     password: that.pass,
                     randNumber: that.randNumber,

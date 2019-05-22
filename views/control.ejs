@@ -30,172 +30,174 @@
     </style>
 </head>
 
-<body class="tm-background" id="app">
-    <nav class="tm-navbar uk-navbar uk-navbar-attached">
-        <div class="uk-container uk-container-center">
-            <ul class="uk-navbar-nav uk-hidden-small" style="float:right;color: white">
-                <li><button class="uk-button uk-button-large ">{{userName}}</button></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="tm-middle">
-        <div class="uk-container uk-container-center">
+<body class="tm-background">
+    <div id="app">
+        <nav class="tm-navbar uk-navbar uk-navbar-attached">
+            <div class="uk-container uk-container-center">
+                <ul class="uk-navbar-nav uk-hidden-small" style="float:right;color: white">
+                    <li><button class="uk-button uk-button-large ">{{userName}}</button></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="tm-middle">
+            <div class="uk-container uk-container-center">
 
-            <div class="uk-grid" data-uk-grid-margin="">
-                <div class="tm-sidebar uk-width-medium-1-4 uk-hidden-small uk-row-first">
-
-
-                    <!-- 333333333 -->
-                    <p style="color:red;font-size: 1rem;">注：手数设置指的是股票交易的手数，金额设置指的是一只股票最多的买入数</p>
-                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#subnav-pill-content-1'}">
-                        <li class="" aria-expanded="false"><a href="#">手数设置</a></li>
-                        <li aria-expanded="true" class="uk-active"><a href="#">金额设置</a></li>
-                    </ul>
-                    <ul id="subnav-pill-content-1" class="uk-switcher">
-                        <li class="" aria-hidden="true">
-                            <ul class="tm-nav uk-nav center" data-uk-nav="">
-
-                                <li class="uk-nav-header">选择买入手数</li>
-                                <li style="margin-bottom:10px;">
-                                    <form class="uk-form">
-                                        <fieldset data-uk-margin>
-                                            <input type="text" placeholder="设置总金额" v-model="AmountAll">
-                                        </fieldset>
-
-                                    </form>
-                                </li>
-                                <li style="margin-bottom:10px">
-                                    <form class="uk-form">
-                                        <fieldset data-uk-margin>
-                                            <input type="text" placeholder="设置每只股票买入手数" v-model="gupiaoItem">
-                                        </fieldset>
-                                    </form>
-                                </li>
-                                <li>
-                                    <button class="uk-button uk-button-danger" @click='setAmount()'>设   置</button>
-                                </li>
-                            </ul>
-                        </li>
-                        <li aria-hidden="false" class="uk-active">
-                            <ul class="tm-nav uk-nav center" data-uk-nav="">
-
-                                <li class="uk-nav-header">选择每只股票最大金额</li>
-                                <li style="margin-bottom:10px;">
-                                    <form class="uk-form">
-                                        <fieldset data-uk-margin>
-                                            <input type="text" placeholder="设置总金额" v-model="AmountAll">
-                                        </fieldset>
-
-                                    </form>
-                                </li>
-                                <li style="margin-bottom:10px">
-                                    <form class="uk-form">
-                                        <fieldset data-uk-margin>
-                                            <input type="text" placeholder="设置每只股票最大买入金额" v-model="gupiaoItem1">
-                                        </fieldset>
-                                    </form>
-                                </li>
-                                <li>
-                                    <button class="uk-button uk-button-danger" @click='setAmount1()'>设   置</button>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                <div class="uk-grid" data-uk-grid-margin="">
+                    <div class="tm-sidebar uk-width-medium-1-4">
 
 
+                        <!-- 333333333 -->
+                        <p style="color:red;font-size: 1rem;">注：手数设置指的是股票交易的手数，金额设置指的是一只股票最多的买入数</p>
+                        <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#subnav-pill-content-1'}">
+                            <li class="" aria-expanded="false"><a href="#">手数设置</a></li>
+                            <li aria-expanded="true" class="uk-active"><a href="#">金额设置</a></li>
+                        </ul>
+                        <ul id="subnav-pill-content-1" class="uk-switcher">
+                            <li class="" aria-hidden="true">
+                                <ul class="tm-nav uk-nav center" data-uk-nav="">
+
+                                    <li class="uk-nav-header">选择买入手数</li>
+                                    <li style="margin-bottom:10px;">
+                                        <form class="uk-form">
+                                            <fieldset data-uk-margin>
+                                                <input type="text" placeholder="设置总金额" v-model="AmountAll">
+                                            </fieldset>
+
+                                        </form>
+                                    </li>
+                                    <li style="margin-bottom:10px">
+                                        <form class="uk-form">
+                                            <fieldset data-uk-margin>
+                                                <input type="text" placeholder="设置每只股票买入手数" v-model="gupiaoItem">
+                                            </fieldset>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <button class="uk-button uk-button-danger" @click='setAmount()'>设   置</button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li aria-hidden="false" class="uk-active">
+                                <ul class="tm-nav uk-nav center" data-uk-nav="">
+
+                                    <li class="uk-nav-header">选择每只股票最大金额</li>
+                                    <li style="margin-bottom:10px;">
+                                        <form class="uk-form">
+                                            <fieldset data-uk-margin>
+                                                <input type="text" placeholder="设置总金额" v-model="AmountAll">
+                                            </fieldset>
+
+                                        </form>
+                                    </li>
+                                    <li style="margin-bottom:10px">
+                                        <form class="uk-form">
+                                            <fieldset data-uk-margin>
+                                                <input type="text" placeholder="设置每只股票最大买入金额" v-model="gupiaoItem1">
+                                            </fieldset>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <button class="uk-button uk-button-danger" @click='setAmount1()'>设   置</button>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
 
 
 
-                </div>
-                <div class="tm-main uk-width-medium-3-4">
 
-                    <article class="uk-article">
-                        <p>
-                            <button class="uk-button uk-button-large uk-button-primary" @click='start()'>开始</button>
-                            <button class="uk-button uk-button-large" @click='stop()'>暂停</button>
-                        </p>
-                        <!-- 列表 -->
-                        <ul class="uk-list uk-list-line">
-                            <li v-for='item in listDate'>
-                                <div v-if='item.success' class="clearFloat">
-                                    <span>{{$index}}</span>
-                                    <span>{{item.title}}</span>
-                                    <span class="color:red">{{item.type}}</span>
-                                    <span>{{item.Number}}</span>
-                                    <span>{{item.Message}}</span>
-                                    <span>{{item.times}}</span>
-                                    <!-- <button>下单成功</button> -->
-                                    <div class="uk-dropdown uk-dropdown-bottom" style="top: 30px; left: 0px;">
-                                        <ul class="uk-nav uk-nav-dropdown">
-                                            <li><span>{{item.Message}}</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div v-if='!item.success' class="clearFloat">
-                                    <span>{{$index+1}}</span>
-                                    <span>{{item.title}}</span>
-                                    <span class="color:red">{{item.type}}</span>
-                                    <span>{{item.Number}}</span>
-                                    <span>{{item.Message}}</span>
-                                    <span>{{item.times}}</span>
-                                    <!-- <button>下单失败</button> -->
-                                    <div class="uk-button-dropdown floatRight" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
-                                        <button class="uk-button uk-button-danger">下单失败 <i class="uk-icon-caret-down"></i></button>
+
+                    </div>
+                    <div class="tm-main uk-width-medium-3-4">
+
+                        <article class="uk-article">
+                            <p>
+                                <button class="uk-button uk-button-large uk-button-primary" @click='start()'>开始</button>
+                                <button class="uk-button uk-button-large" @click='stop()'>暂停</button>
+                            </p>
+                            <!-- 列表 -->
+                            <ul class="uk-list uk-list-line">
+                                <li v-for='item in listDate'>
+                                    <div v-if='item.success' class="clearFloat">
+                                        <span>{{$index}}</span>
+                                        <span>{{item.title}}</span>
+                                        <span class="color:red">{{item.type}}</span>
+                                        <span>{{item.Number}}</span>
+                                        <span>{{item.Message}}</span>
+                                        <span>{{item.times}}</span>
+                                        <!-- <button>下单成功</button> -->
                                         <div class="uk-dropdown uk-dropdown-bottom" style="top: 30px; left: 0px;">
                                             <ul class="uk-nav uk-nav-dropdown">
                                                 <li><span>{{item.Message}}</span></li>
                                             </ul>
                                         </div>
                                     </div>
+                                    <div v-if='!item.success' class="clearFloat">
+                                        <span>{{$index+1}}</span>
+                                        <span>{{item.title}}</span>
+                                        <span class="color:red">{{item.type}}</span>
+                                        <span>{{item.Number}}</span>
+                                        <span>{{item.Message}}</span>
+                                        <span>{{item.times}}</span>
+                                        <!-- <button>下单失败</button> -->
+                                        <div class="uk-button-dropdown floatRight" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
+                                            <button class="uk-button uk-button-danger">下单失败 <i class="uk-icon-caret-down"></i></button>
+                                            <div class="uk-dropdown uk-dropdown-bottom" style="top: 30px; left: 0px;">
+                                                <ul class="uk-nav uk-nav-dropdown">
+                                                    <li><span>{{item.Message}}</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>已下过的单</li>
+                                <li v-for='item in orderDate'>
+                                    {{item}}
+                                </li>
+                            </ul>
+                        </article>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+        <!-- <div id="app">
+                    <h1>页面接口调试</h1>
+                    <div class="btnWrap">
+                        <button @click='start()'>
+                            开始
+                        </button>
+                        <button @click='stop()'>
+                            停止
+                        </button>
+                    </div>
+                    <div>
+                        <ul>
+                            <li v-for='item in listDate' @click='getDetail(item)'>
+                                <div v-if='item.success'>
+                                    <span>{{$index}}</span>
+                                    <a href='#'>{{item.Message}}</a>
+                                    <button>下单成功</button>
+                                </div>
+                                <div v-if='!item.success'>
+                                    <span>{{$index}}</span>
+                                    <a href='#'>{{item.Message}}</a>
+                                    <button>下单失败</button>
                                 </div>
                             </li>
                         </ul>
-                        <ul>
-                            <li>已下过的单</li>
-                            <li v-for='item in orderDate'>
-                                {{item}}
-                            </li>
-                        </ul>
-                    </article>
-
-                </div>
-            </div>
-
-        </div>
+                    </div>
+                </div> -->
     </div>
-
-
-
-
-
-
-    <!-- <div id="app">
-        <h1>页面接口调试</h1>
-        <div class="btnWrap">
-            <button @click='start()'>
-                开始
-            </button>
-            <button @click='stop()'>
-                停止
-            </button>
-        </div>
-        <div>
-            <ul>
-                <li v-for='item in listDate' @click='getDetail(item)'>
-                    <div v-if='item.success'>
-                        <span>{{$index}}</span>
-                        <a href='#'>{{item.Message}}</a>
-                        <button>下单成功</button>
-                    </div>
-                    <div v-if='!item.success'>
-                        <span>{{$index}}</span>
-                        <a href='#'>{{item.Message}}</a>
-                        <button>下单失败</button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div> -->
 </body>
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <script src="./js/components/notify.js"></script>
@@ -205,7 +207,11 @@
 <script src="./javascripts/vue.js "></script>
 <script src="./javascripts/vue-resource.js ">
 </script>
+<script src="./javascripts/vconsole.min.js"></script>
+
 <script>
+    var vConsole = new VConsole();
+    console.log('Hello world');
     var socket = io();
     var localStorage = window.localStorage
     const vm = new Vue({
@@ -224,7 +230,7 @@
             setAmount() {
                 var that = this
                 console.log('1232131231', that.AmountAll, that.gupiaoItem)
-                this.$http.post('http://localhost:3001/amount', {
+                this.$http.post(`http://${window.location.host}/amount`, {
                     AmountAll: that.AmountAll,
                     gupiaoItem: that.gupiaoItem,
                     type: 1
@@ -244,7 +250,7 @@
             setAmount1() {
                 var that = this
                 console.log('1232131231', that.AmountAll, that.gupiaoItem)
-                this.$http.post('http://localhost:3001/amount', {
+                this.$http.post(`http://${window.location.host}/amount`, {
                     AmountAll: that.AmountAll,
                     gupiaoItem1: that.gupiaoItem1,
                     type: 2
@@ -262,8 +268,9 @@
                 })
             },
             getAmount() {
+                console.log('jine')
                 var that = this
-                this.$http.post('http://localhost:3001/seachAmount', {}).then(data => {
+                this.$http.post(`http://${window.location.host}/seachAmount`, {}).then(data => {
                     console.log('data', data.data)
                     that.AmountAll = data.data.AmountAll
                     that.gupiaoItem = data.data.gupiaoItem
@@ -271,7 +278,7 @@
                 })
             },
             start() {
-                this.$http.post('http://localhost:3001/start', {
+                this.$http.post(`http://${window.location.host}/start`, {
 
                 }).then(data => {
                     // console.log(data.data) 
@@ -292,7 +299,7 @@
                     "wyz": 'wabgbs',
                 });
 
-                // this.$http.post('http://localhost:3001/stop', {
+                // this.$http.post(`http://${window.location.host}/stop`, {
 
                 // }).then(data => {
                 //     console.log(data.data.body)
@@ -301,7 +308,7 @@
                 // })
             },
             getHistory() {
-                this.$http.post('http://localhost:3001/history', {
+                this.$http.post(`http://${window.location.host}/history`, {
 
                 }).then(data => {
                     // console.log(data.data) 
@@ -319,7 +326,7 @@
             },
             // 昨天下过的单
             yesterdayOrderList() {
-                this.$http.post('http://localhost:3001/getYesterdayBuyList', {
+                this.$http.post(`http://${window.location.host}/getYesterdayBuyList`, {
 
                 }).then(data => {
                     // console.log(data.data) 
@@ -337,7 +344,7 @@
             },
             // 我的持仓
             holdPositions() {
-                this.$http.post('http://localhost:3001/holdPositions', {
+                this.$http.post(`http://${window.location.host}/holdPositions`, {
 
                 }).then(data => {
                     // console.log(data.data) 
@@ -355,9 +362,9 @@
             }
         },
         created() {
-            if (!window.localStorage.userName) {
-                window.location.href = '/login'
-            }
+            // if (!window.localStorage.userName) {
+            //     window.location.href = '/login'
+            // }
             this.getAmount()
             this.yesterdayOrderList()
             this.getHistory()
