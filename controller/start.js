@@ -37,7 +37,7 @@ function getList(CallBack) {
     const obj = {}
     const arr = []
     const newArr = []
-    request(`http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&token=4f1862fc3b5e77c150a2b985b12db0fd&sty=FCOIATC&js=(%7Bdata%3A%5B(x)%5D%2CrecordsFiltered%3A(tot)%7D)&cmd=C._A&st=(ChangePercent)&sr=-1&p=1&ps=60&_=${(new Date()).getTime()}`, function(error, response, body) {
+    request(`http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&token=4f1862fc3b5e77c150a2b985b12db0fd&sty=FCOIATC&js=(%7Bdata%3A%5B(x)%5D%2CrecordsFiltered%3A(tot)%7D)&cmd=C._A&st=(ChangePercent)&sr=-1&p=1&ps=100&_=${(new Date()).getTime()}`, function(error, response, body) {
         if (!error && response.statusCode == 200) {
             // const result = body.match(/\(([^)]*)\)/);
             // const datas = result[1].match(/\[([^)]*)\]/)
@@ -47,11 +47,19 @@ function getList(CallBack) {
             for (var j = 0; j < JSON.parse(datas).length; j++) {
                 arr.push(JSON.parse(datas)[j])
             }
+            // fs.writeFile('./public/logger/lists.json', JSON.stringify(arr), function(err) {
+            //     if (err) {
+            //         console.log('这里啊')
+            //         console.log(err);
+            //     }
+            // })
             for (var e = 0; e < arr.length; e++) {
                 if (newArr.length == 0) {
                     newArr.push(arr[0])
                 }
-                if (arr[e][9] < arr[e][12] * 1.1.toFixed(2) && arr[e][11] < arr[e][12] * 1.1.toFixed(2)) {
+                var panduan = arr[e].split(',')
+                console.log(99999999999, panduan)
+                if (panduan[9] < panduan[12] * 1.1.toFixed(2) && panduan[11] < panduan[12] * 1.1.toFixed(2)) {
                     var listControl = 1
                     for (var x = 0; x < newArr.length; x++) {
                         if (arr[e].split(',')[4] == newArr[x].split(',')[4]) {
@@ -71,7 +79,7 @@ function getList(CallBack) {
             logObj.title = '沪深A股列表查询'
             logObj.times = new Date().toLocaleString();
             logObj.data = obj
-            console.log('list过去了', obj.body.length)
+                // console.log('list过去了', obj.body.length)
             return CallBack(true, obj)
         }
     })

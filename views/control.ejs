@@ -358,18 +358,19 @@
             if (!window.localStorage.userName) {
                 window.location.href = '/login'
             }
-            // this.getAmount()
-            // this.yesterdayOrderList()
+            this.getAmount()
+            this.yesterdayOrderList()
             this.getHistory()
-                // this.holdPositions()
+            this.holdPositions()
         }
     })
     socket.on("getls", function(msg) {
         console.log(msg.datas.data)
-            // vm.listDate = msg.datas.data
-        for (var i = 0; i < msg.datas.data; i++) {
-            vm.listDate.push(msg.datas.data[i])
-        }
+        vm.listDate = msg.datas.data
+            // for (var i = 0; i < msg.datas.data; i++) {
+            //     vm.listDate.push(msg.datas.data[i])
+            //     console.log('拿到的', vm.listDate)
+            // }
     });
     socket.on("orders", function(msg) {
         console.log(msg.datas.data)
