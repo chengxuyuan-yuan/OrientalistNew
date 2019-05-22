@@ -39,60 +39,62 @@ function getList(CallBack) {
     const newArr = []
     request(`http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&token=4f1862fc3b5e77c150a2b985b12db0fd&sty=FCOIATC&js=(%7Bdata%3A%5B(x)%5D%2CrecordsFiltered%3A(tot)%7D)&cmd=C._A&st=(ChangePercent)&sr=-1&p=1&ps=100&_=${(new Date()).getTime()}`, function(error, response, body) {
         if (!error && response.statusCode == 200) {
-            // const result = body.match(/\(([^)]*)\)/);
-            // const datas = result[1].match(/\[([^)]*)\]/)
             var result = body.substr(7, body.length)
             var datas = result.substring(0, result.length - 23)
             console.log(5555555, JSON.parse(datas).length)
-            for (var j = 0; j < JSON.parse(datas).length; j++) {
-                arr.push(JSON.parse(datas)[j])
+            var parseDate = JSON.parse(datas)
+            for (var j = 0; j < parseDate.length; j++) {
+                // arr.push(JSON.parse(datas)[j])
+                var panduan = parseDate[j].split(',')
+                    // console.log(99999999999, panduan[9] + ',' + panduan[11] + ',' + (panduan[12] * 1.1).toFixed(2))
+                if (panduan[9] < (panduan[12] * 1.1).toFixed(2) && panduan[11] < (panduan[12] * 1.1).toFixed(2)) {
+                    newArr.push(panduan)
+                }
             }
             // fs.writeFile('./public/logger/lists.json', JSON.stringify(arr), function(err) {
-            //     if (err) {
-            //         console.log('这里啊')
-            //         console.log(err);
+            //         if (err) {
+            //             console.log('这里啊')
+            //             console.log(err);
+            //         }
+            //     })
+            // for (var e = 0; e < arr.length; e++) {
+            //     if (newArr.length == 0) {
+            //         newArr.push(arr[0])
             //     }
-            // })
-            for (var e = 0; e < arr.length; e++) {
-                if (newArr.length == 0) {
-                    newArr.push(arr[0])
-                }
-                var panduan = arr[e].split(',')
-                console.log(99999999999, panduan)
-                if (panduan[9] < panduan[12] * 1.1.toFixed(2) && panduan[11] < panduan[12] * 1.1.toFixed(2)) {
-                    var listControl = 1
-                    for (var x = 0; x < newArr.length; x++) {
-                        if (arr[e].split(',')[4] == newArr[x].split(',')[4]) {
-                            listControl = 0
-                        }
-
-                    }
-                    if (listControl == 1) {
-                        newArr.push(arr[e])
-                    }
-                }
-            }
+            //     var panduan = arr[e].split(',')
+            //     console.log(99999999999, panduan)
+            //     if (panduan[9] < panduan[12] * 1.1.toFixed(2) && panduan[11] < panduan[12] * 1.1.toFixed(2)) {
+            //         newArr.push(arr[e])
+            //     }
+            // }
+            // for (var e = 0; e < arr.length; e++) {
+            //     if (newArr.length == 0) {
+            //         newArr.push(arr[0])
+            //     }
+            //     var panduan = arr[e].split(',')
+            //     console.log(99999999999, panduan[9] + ',' + panduan[11] + ',' + (panduan[12] * 1.1).toFixed(2))
+            //     if (panduan[9] < (panduan[12] * 1.1).toFixed(2) && panduan[11] < (panduan[12] * 1.1).toFixed(2)) {
+            //         newArr.push(panduan)
+            //     }
+            // }
             obj.body = newArr
-                // if (page >= 3) {
             listMsg.listMsg = obj
-            var logObj = {}
-            logObj.title = '沪深A股列表查询'
-            logObj.times = new Date().toLocaleString();
-            logObj.data = obj
-                // console.log('list过去了', obj.body.length)
+            obj.title = '沪深A股列表查询'
+            obj.times = new Date().toLocaleString();
+            obj.data = obj
+            console.log('list过去了', obj.body, obj.body.length)
             return CallBack(true, obj)
         }
     })
 }
 
 function getDetail(obj, CallBack) {
+    // console.log('&&&&&&&&&&&&&&&&&&&&&&&&', obj)
     var num = 0
     console.log('******************************')
-    var yyyy = []
     for (var q = 0; q < obj.body.length; q++) {
         (function(w) {
-            console.log(obj.body[w].split(','))
-            var ids = '' + obj.body[w].split(',')[1] + obj.body[w].split(',')[0]
+            var ids = '' + obj.body[w][1] + obj.body[w][0]
                 // `http://nuff.eastmoney.com/EM_Finance2015TradeInterface/JS.ashx?id=0021192&token=4f1862fc3b5e77c150a2b985b12db0fd&cb=jQuery18303709778769726131_1558224251806&_=1558224254067`
             request(`http://nuff.eastmoney.com/EM_Finance2015TradeInterface/JS.ashx?id=${ids}&token=D43BF722C8E33BDC906FB84D85E326E8&cb=jQuery18305166030736718639_1556436707331&_=${(new Date()).getTime()}`, function(error, response, body) {
                 const objs = {}
@@ -100,16 +102,22 @@ function getDetail(obj, CallBack) {
                     let result = body.match(/\(([^)]*)\)/);
                     if (result) {
                         objs.body = JSON.parse(result[1])
-                        console.log(objs.body.Value)
+                            // console.log('qqqqqqqqqqqqqqqqq', objs.body.Value.length)
+                        console.log('qqqqqqqqqqqqqqqqq')
                         if (objs.body.Value[29] > 5.5) {
+                            // console.log('aaaaaaaaaaaaaaaaa', objs.body.Value)
                             if (objs.body.Value[45] < 3000000000) {
+                                // console.log('zzzzzzzzzzzzzzzzz', objs.body.Value)
+                                console.log('zzzzzzzzzzzzzzzzz', objs.body.Value)
                                 if (objs.body.Value[3] * objs.body.Value[13] * 100 >= 3000000) {
-
+                                    // console.log('wwwwwwwwwwwwwwww', objs.body.Value)
+                                    console.log('wwwwwwwwwwwwwwww')
                                     var control = 1
                                     for (var i = 0; i < msg.filterArr.length + 1; i++) {
                                         if (msg.filterArr[i] && msg.filterArr[i][1] == objs.body.Value[1]) {
                                             // 条件的意思是排除的数组里面有刚好下单的股票
-                                            console.log(1111111, objs.body.Value[1])
+                                            // console.log('sssssssssssssss', objs.body.Value[1])
+                                            console.log('sssssssssssssss')
                                             control = 0
                                             console.log('经过吗', control)
                                                 // for(var d=0;d<objs.body.Value)
@@ -123,16 +131,18 @@ function getDetail(obj, CallBack) {
                                     }
                                 }
                             } else if (objs.body.Value[45] >= 3000000000 && objs.body.Value[45] < 6000000000) {
+                                console.log('zzzzzzzzzzzzzzzzz')
                                 if (objs.body.Value[3] * objs.body.Value[13] * 100 >= 8000000) {
+                                    console.log('wwwwwwwwwwwwwwww')
                                     var control = 1
-
                                     for (var i = 0; i < msg.filterArr.length + 1; i++) {
                                         // console.log('判断条件1', msg.filterArr)
                                         // console.log('判断条件2', objs.body.Value[1])
                                         // console.log('判断', msg.filterArr[i][1] == objs.body.Value[1])
                                         if (msg.filterArr[i] && msg.filterArr[i][1] == objs.body.Value[1]) {
                                             // 条件的意思是排除的数组里面有刚好下单的股票
-                                            console.log(1111111, objs.body.Value[1])
+                                            console.log('sssssssssssssss')
+                                                // console.log('1111111', objs.body.Value[1])
                                             control = 0
                                             console.log('经过吗', control)
 
