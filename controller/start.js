@@ -48,7 +48,11 @@ function getList(CallBack) {
                 // arr.push(JSON.parse(datas)[j])
                 var panduan = parseDate[j].split(',')
                     // console.log(99999999999, panduan[9] + ',' + panduan[11] + ',' + (panduan[12] * 1.1).toFixed(2))
+<<<<<<< .mine
                 if (panduan[9] <= (panduan[12] * 1.1).toFixed(2) && panduan[11] <= (panduan[12] * 1.1).toFixed(2)) {
+=======
+                if (panduan[9] < ((panduan[12] * 1.1).toFixed(2)) && panduan[11] < ((panduan[12] * 1.1).toFixed(2))) {
+>>>>>>> .theirs
                     newArr.push(panduan)
                 }
             }
@@ -160,98 +164,6 @@ function getDetail(obj, CallBack) {
                                 }
                             }
                         }
-                        // var str35 = ''
-                        // console.log(objs.body.Value)
-                        // if (objs.body.Value[35].search("万") != -1) {
-                        //     str35 = parseFloat(objs.body.Value[35]) * 10000
-                        // }
-                        // if (objs.body.Value[35].search("亿") != -1) {
-                        //     str35 = parseFloat(objs.body.Value[35]) * 100000000
-                        // }
-                        // if (objs.body.Value[3] == objs.body.Value[23] && objs.body.Value[29] > 9) {
-                        //     if (objs.body.Value[45] < 4000000000 && str35 < 200000000) {
-                        //         if (objs.body.Value[3] * objs.body.Value[13] * 100 > 5000000 && objs.body.Value[3] * objs.body.Value[13] * 100 < 20000000) {
-                        //             var control = 1
-                        //             for (var i = 0; i < msg.filterArr.length + 1; i++) {
-                        //                 if (msg.filterArr[i] && msg.filterArr[i][1] == objs.body.Value[1]) {
-                        //                     // 条件的意思是排除的数组里面有刚好下单的股票
-                        //                     console.log(1111111, objs.body.Value[1])
-                        //                     control = 0
-                        //                     console.log('经过吗', control)
-                        //                         // for(var d=0;d<objs.body.Value)
-                        //                 }
-                        //             }
-                        //             if (control == 1) {
-                        //                 var logStr = JSON.stringify(objs.body.Value)
-                        //                 yyyy.push(objs.body.Value)
-                        //                 fs.writeFile('./public/logger/order1.json', JSON.stringify(yyyy), function(err) {
-                        //                     if (err) {
-                        //                         console.log('这里啊')
-                        //                         console.log(err);
-                        //                     }
-                        //                 })
-                        //                 fs.writeFile('./public/logger/panduanArr2.json', JSON.stringify(msg.filterArr), function(err) {
-                        //                         if (err) {
-                        //                             console.log('这里啊')
-                        //                             console.log(err);
-                        //                         }
-                        //                     })
-                        //                     // 下单
-                        //                 num += 1
-                        //                 listMsg.nums = num
-                        //                 console.log('chakan', num)
-                        //                 return CallBack(true, objs.body.Value)
-                        //             }
-                        //             // }
-
-                        //         }
-                        //     } else {
-                        //         if (objs.body.Value[3] * objs.body.Value[13] * 100 > 10000000 && objs.body.Value[3] * objs.body.Value[13] * 100 < 40000000) {
-                        //             // 下单
-
-                        //             // return CallBack(true, objs.body.Value)
-                        //             // if (msg.filterArr.length == 0) {
-                        //             //     return CallBack(true, objs.body.Value)
-
-                        //             // } else {
-                        //             var control = 1
-
-                        //             for (var i = 0; i < msg.filterArr.length + 1; i++) {
-                        //                 // console.log('判断条件1', msg.filterArr)
-                        //                 // console.log('判断条件2', objs.body.Value[1])
-                        //                 // console.log('判断', msg.filterArr[i][1] == objs.body.Value[1])
-                        //                 if (msg.filterArr[i] && msg.filterArr[i][1] == objs.body.Value[1]) {
-                        //                     // 条件的意思是排除的数组里面有刚好下单的股票
-                        //                     console.log(1111111, objs.body.Value[1])
-                        //                     control = 0
-                        //                     console.log('经过吗', control)
-
-                        //                 }
-
-                        //             }
-                        //             if (control == 1) {
-                        //                 console.log('control，11111111', msg.filterArr, objs.body.Value[1])
-                        //                 yyyy.push(objs.body.Value)
-                        //                 fs.writeFile('./public/logger/order.json', JSON.stringify(yyyy), function(err) {
-                        //                     if (err) {
-                        //                         console.log('这里啊')
-                        //                         console.log(err);
-                        //                     }
-                        //                 })
-                        //                 fs.writeFile('./public/logger/panduanArr1.json', JSON.stringify(msg.filterArr), function(err) {
-                        //                     if (err) {
-                        //                         console.log('这里啊')
-                        //                         console.log(err);
-                        //                     }
-                        //                 })
-                        //                 num += 1
-                        //                 listMsg.nums = num
-                        //                 console.log('chakan', num)
-                        //                 return CallBack(true, objs.body.Value)
-                        //             }
-                        //         }
-                        //     }
-                        // }
                     }
                 }
             })
