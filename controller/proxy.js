@@ -36,7 +36,7 @@ function webProxy(targetUrl, localPort) {
 
         switch (host) {
             case 'www.111.cn':
-                proxy.web(req, res, { target: 'http://localhost:3001' });
+                proxy.web(req, res, { target: 'http://localhost:8078' });
                 break;
             case 'vote.111.cn':
                 proxy.web(req, res, { target: 'http://localhost:9527' });

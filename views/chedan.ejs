@@ -215,7 +215,7 @@
             setAmount() {
                 var that = this
                 console.log('1232131231', that.AmountAll, that.gupiaoItem)
-                this.$http.post('http://localhost:3001/amount', {
+                this.$http.post('http://localhost:8078/amount', {
                     AmountAll: that.AmountAll,
                     gupiaoItem: that.gupiaoItem,
                     type: 1
@@ -235,7 +235,7 @@
             setAmount1() {
                 var that = this
                 console.log('1232131231', that.AmountAll, that.gupiaoItem)
-                this.$http.post('http://localhost:3001/amount', {
+                this.$http.post('http://localhost:8078/amount', {
                     AmountAll: that.AmountAll,
                     gupiaoItem1: that.gupiaoItem1,
                     type: 2
@@ -254,7 +254,7 @@
             },
             getAmount() {
                 var that = this
-                this.$http.post('http://localhost:3001/seachAmount', {}).then(data => {
+                this.$http.post('http://localhost:8078/seachAmount', {}).then(data => {
                     console.log('data', data.data)
                     that.AmountAll = data.data.AmountAll
                     that.gupiaoItem = data.data.gupiaoItem
@@ -262,7 +262,7 @@
                 })
             },
             start() {
-                this.$http.post('http://localhost:3001/start', {
+                this.$http.post('http://localhost:8078/start', {
 
                 }).then(data => {
                     // console.log(data.data) 
@@ -283,7 +283,7 @@
                     "wyz": 'wabgbs',
                 });
 
-                // this.$http.post('http://localhost:3001/stop', {
+                // this.$http.post('http://localhost:8078/stop', {
 
                 // }).then(data => {
                 //     console.log(data.data.body)
@@ -292,7 +292,7 @@
                 // })
             },
             getHistory() {
-                this.$http.post('http://localhost:3001/history', {
+                this.$http.post('http://localhost:8078/history', {
 
                 }).then(data => {
                     // console.log(data.data) 
@@ -309,7 +309,7 @@
                 })
             },
             yesterdayOrderList() {
-                this.$http.post('http://localhost:3001/getYesterdayBuyList', {
+                this.$http.post('http://localhost:8078/getYesterdayBuyList', {
 
                 }).then(data => {
                     // console.log(data.data) 

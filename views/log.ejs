@@ -37,14 +37,14 @@
         },
         methods: {
             getLogList() {
-                this.$http.post('http://localhost:3001/getLogList', {}, {
+                this.$http.post('http://localhost:8078/getLogList', {}, {
                     emulateJSON: true
                 }).then(data => {
                     this.listData = data.data
                 })
             },
             getLog(item, num) {
-                this.$http.post('http://localhost:3001/getLog', {
+                this.$http.post('http://localhost:8078/getLog', {
                     fileName: item,
                     type: num
                 }, {

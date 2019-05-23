@@ -55,7 +55,7 @@
             doOrder() {
                 console.log('dianji ')
                 const that = this
-                this.$http.post('http://localhost:3001/doOrder', {
+                this.$http.post('http://localhost:8078/doOrder', {
                     stockCode: that.stockCode,
                     price: that.price,
                     amount: that.amount,
