@@ -28,7 +28,7 @@ var start = function(reqs, res, next) {
                                     if (listMsg.nums == arr.length) {
                                         obj.status = 1
                                         obj.data = arr
-                                        res.json(obj)
+                                        res.json(msg)
                                     }
                                 } else {
                                     obj.status = -2
