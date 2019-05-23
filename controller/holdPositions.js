@@ -25,7 +25,7 @@ var holdPositions = function(reqs, res, next) {
             if (body.Data && body.Data.length != 0) {
                 for (var i = 0; i < body.Data.length; i++) {
                     var arr = []
-                    arr.push('1')
+                    arr.push('4')
                     arr.push(body.Data[i].Zqdm)
                     arr.push(body.Data[i].Zqmc)
                     msg.filterArr.push(arr)

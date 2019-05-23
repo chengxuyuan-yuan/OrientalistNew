@@ -5,6 +5,7 @@ const history = function(reqs, res, next) {
     console.log('list')
     const obj = {}
     const arr = []
+    // 昨天涨停过的
         // request(`http://nuyd.eastmoney.com/EM_UBG_PositionChangesInterface/api/js?dtformat=HH:mm:ss&js=({data:[(x)],pc:(pc)})&rows=64&cb=jQuery17203111078215398746_1556377930215&page=${page}&type=&_=${(new Date()).getTime()}`, function(error, response, body) {
     request(`http://nufm.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&token=4f1862fc3b5e77c150a2b985b12db0fd&sty=FCOIATC&js=(%7Bdata%3A%5B(x)%5D%2CrecordsFiltered%3A(tot)%7D)&cmd=C.BK08151&st=(ChangePercent)&sr=-1&p=1&ps=60&_=${new Date()}`, function(error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -15,16 +16,18 @@ const history = function(reqs, res, next) {
                 //     arr.push(JSON.parse(datas[0])[j])
                 // }
                 if (body) {
-                    console.log('1111', body)
-                        // var bodyStr = body.match(/{(\S*)/);
-                        // console.log('bodyStr', bodyStr)
-
+                    // console.log('1111getHistory', body)
                     var bodyArr = body.substr(7, body.length)
                     bodyArr = bodyArr.substring(0, bodyArr.length - 21)
                         // console.log(99999, bodyArr)
                     var arr = JSON.parse(bodyArr)
                     for (var w = 0; w < arr.length; w++) {
-                        msg.filterArr.push(arr[w])
+                        var json = []
+                        var jsonArr = arr[w].split(",")
+                        json.push('1')
+                        json.push(jsonArr[1])
+                        json.push(jsonArr[2])
+                        msg.filterArr.push(json)
                     }
                     // console.log(1111111, msg.filterArr.length)
                 }

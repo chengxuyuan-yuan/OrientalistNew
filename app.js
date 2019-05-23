@@ -71,6 +71,7 @@ app.post('/getLog', controller.getLog)
 app.post('/getLogList', controller.getLogList)
 app.post('/getYesterdayBuyList', controller.getYesterdayBuyList)
 app.post('/holdPositions', controller.holdPositions)
+app.post('/alerdayLImitupList', controller.alerdayLImitupList)
     // app.post('./doOrder', controller.doOrder)
     // app.post('./doOrder', controller.doOrder)
 

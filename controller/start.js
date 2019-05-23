@@ -42,12 +42,13 @@ function getList(CallBack) {
             var result = body.substr(7, body.length)
             var datas = result.substring(0, result.length - 23)
             console.log(5555555, JSON.parse(datas).length)
+            console.log(JSON.parse(datas))
             var parseDate = JSON.parse(datas)
             for (var j = 0; j < parseDate.length; j++) {
                 // arr.push(JSON.parse(datas)[j])
                 var panduan = parseDate[j].split(',')
                     // console.log(99999999999, panduan[9] + ',' + panduan[11] + ',' + (panduan[12] * 1.1).toFixed(2))
-                if (panduan[9] < (panduan[12] * 1.1).toFixed(2) && panduan[11] < (panduan[12] * 1.1).toFixed(2)) {
+                if (panduan[9] <= (panduan[12] * 1.1).toFixed(2) && panduan[11] <= (panduan[12] * 1.1).toFixed(2)) {
                     newArr.push(panduan)
                 }
             }
@@ -104,7 +105,7 @@ function getDetail(obj, CallBack) {
                         objs.body = JSON.parse(result[1])
                             // console.log('qqqqqqqqqqqqqqqqq', objs.body.Value.length)
                         console.log('qqqqqqqqqqqqqqqqq')
-                        if (objs.body.Value[29] > 5.5) {
+                        if (objs.body.Value[29] > 5.5 && objs.body.Value[3] == objs.body.Value[23]) {
                             // console.log('aaaaaaaaaaaaaaaaa', objs.body.Value)
                             if (objs.body.Value[45] < 3000000000) {
                                 // console.log('zzzzzzzzzzzzzzzzz', objs.body.Value)

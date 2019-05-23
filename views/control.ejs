@@ -335,6 +335,24 @@
                     }
                 })
             },
+            // 今天服务器开启是已经涨停的股票
+            alerdayLImitupList(){
+                this.$http.post('http://localhost:3001/alerdayLImitupList',{
+
+                }).then(data => {
+                    // console.log(data.data) 
+                    if (data.data.status == 1) {
+                        console.log(111)
+                    } else {
+                        UIkit.notify({
+                            message: data.data.data,
+                            status: 'warning',
+                            timeout: 2000,
+                            pos: 'top-right'
+                        });
+                    }
+                })
+            },
             // 我的持仓
             holdPositions() {
                 this.$http.post('http://localhost:3001/holdPositions', {
@@ -359,9 +377,10 @@
                 window.location.href = '/login'
             }
             this.getAmount()
-            this.yesterdayOrderList()
-            this.getHistory()
+            // this.yesterdayOrderList()
+            // this.getHistory()
             this.holdPositions()
+            // this.alerdayLImitupList()
         }
     })
     socket.on("getls", function(msg) {
